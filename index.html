@@ -82,10 +82,10 @@ footer h4{margin:0 0 8px;color:#fff;font:700 18px "Bricolage Grotesque"}
 footer a{text-decoration:none;border-bottom:1px solid transparent}footer a:hover{border-color:#CFE0D1}
 .soc{display:flex;flex-wrap:wrap;gap:8px 18px}.soc a{font-weight:600;color:var(--sun)}
 .logo{position:fixed;right:12px;top:calc(6px + env(safe-area-inset-top,0px));width:48px;height:48px;border-radius:50%;background:#fff;padding:3px;box-shadow:0 2px 8px rgba(0,0,0,.25);z-index:25;pointer-events:none}
-#cb{position:fixed;right:12px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30}
-#cb.top #cbp{bottom:auto;top:54px}#cb.left #cbp{right:auto;left:0}
+#cb{position:fixed;left:12px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30}
+#cb.top #cbp{bottom:auto;top:54px}#cb.rt #cbp{left:auto;right:0}
 #cbt{touch-action:none;cursor:grab;background:var(--g);color:#fff;border:0;border-radius:999px;padding:12px 18px;font:600 15px "Be Vietnam Pro";cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
-#cbp{display:none;position:absolute;right:0;bottom:54px;width:min(340px,calc(100vw - 24px));height:440px;max-height:62vh;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,.28);flex-direction:column;overflow:hidden}
+#cbp{display:none;position:absolute;left:0;bottom:54px;width:min(340px,calc(100vw - 24px));height:440px;max-height:62vh;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,.28);flex-direction:column;overflow:hidden}
 #cbp.on{display:flex}
 #ch{touch-action:none;cursor:grab;background:var(--g);color:#fff;padding:12px 16px;font-weight:600;display:flex;justify-content:space-between}
 #ch button{background:none;border:0;color:#fff;font-size:20px;cursor:pointer}
@@ -302,7 +302,7 @@ var KE=[[/price|cost|how much|fee/i,"Approximate price per person: Easy 690,000 
 function add(t,c){var d=document.createElement('div');d.className='m '+c;d.textContent=t;$('#cm').appendChild(d);$('#cm').scrollTop=1e5}
 function ask(q){add(q,'u');var K=LANG==='en'?KE:KB;var a=LANG==='en'?"I'm not sure about that. Please call +84 909 686 868 or email batxibosix@gmail.com for direct advice.":"Mình chưa chắc về câu này. Bạn vui lòng gọi hotline +84 909 686 868 hoặc email batxibosix@gmail.com để được tư vấn trực tiếp.";
 for(var i=0;i<K.length;i++){if(K[i][0].test(q)){a=K[i][1];break}}setTimeout(function(){add(a,'b')},350)}
-function place(){var r=$('#cb').getBoundingClientRect();$('#cb').classList.toggle('top',r.top<470);$('#cb').classList.toggle('left',r.right<350)}
+function place(){var r=$('#cb').getBoundingClientRect();$('#cb').classList.toggle('top',r.top<470);$('#cb').classList.toggle('rt',innerWidth-r.left<360)}
 function openChat(){var p=$('#cbp');p.classList.toggle('on');place();if(p.classList.contains('on')&&!$('#cm').children.length){greet()}}
 function greet(){add(LANG==='en'?"Hi, I'm SIXI, BỌ SIX's assistant. Ask me about prices, levels, deposits or policies.":'Xin chào, mình là SIXI, trợ lý của BỌ SIX. Bạn muốn hỏi về giá, cấp độ, đặt cọc hay chính sách?','b')}
 function chips(){$('#cq').innerHTML='';(LANG==='en'?['Prices','Levels','Deposit','Cancellation','Allergies']:['Giá tour','Chọn cấp độ','Đặt cọc','Hủy tour','Dị ứng']).forEach(function(t){var b=document.createElement('button');b.textContent=t;b.onclick=function(){ask(t)};$('#cq').appendChild(b)})}
